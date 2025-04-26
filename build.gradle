@@ -26,11 +26,6 @@ dependencies {
     providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
 }
 
-jib {
-    to {
-        image = "bmuschko/todo-web-app:$version"
-    }
-    container {
-        ports = ['8081']
-    }
+tasks.named('processIntegrationTestResources') {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
