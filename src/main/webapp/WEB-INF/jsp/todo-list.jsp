@@ -4,13 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>To Do application</title>
+    <title>BaseRock AI Demo Application</title>
     <link rel="stylesheet" href="<c:url value="css/base.css"/>">
 </head>
 <body>
 <section id="todoapp">
     <header id="header">
-        <h1>todos</h1>
+
+            <h1>
+            <img src="logo.png" href="https://www.baserock.ai" width="348" height="88" />
+            </h1>
+            <h1>
+            ToDo List Demo Application
+            </h1>
         <form action="<c:url value="insert"/>" method="POST">
             <input type="hidden" name="filter" value="${filter}"/>
             <input id="new-todo" name="name" placeholder="What needs to be done, folks?" autofocus>
