@@ -19,7 +19,21 @@ import java.util.List;
 public class ToDoServiceImpl implements ToDoService {
 
     private final static MediaType JSON_MEDIA_TYPE = MediaType.get("application/json");
-    private final OkHttpClient client = new OkHttpClient();
+    private static final String USERNAME = "admin";
+    private static final String PASSWORD = "password123";
+    private final OkHttpClient client;
+
+    public ToDoServiceImpl() {
+        this.client = new OkHttpClient.Builder()
+                .addInterceptor(chain -> {
+                    Request originalRequest = chain.request();
+                    Request authenticatedRequest = originalRequest.newBuilder()
+                            .header("Authorization", Credentials.basic(USERNAME, PASSWORD))
+                            .build();
+                    return chain.proceed(authenticatedRequest);
+                })
+                .build();
+    }
 
     @Value("${todo.web.service.url}")
     private String webServiceUrl;
